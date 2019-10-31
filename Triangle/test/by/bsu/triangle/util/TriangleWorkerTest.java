@@ -45,9 +45,7 @@ class TriangleWorkerTest {
     @Test
     public void isTrianglePossibleTestEquilateralTriangle() throws TriangleInvalidSideException {
         double a = 1;
-        double b = 1;
-        double c = 1;
-        assertTrue(TriangleWorker.isTrianglePossible(a,b,c));
+        assertTrue(TriangleWorker.isTrianglePossible(a,a,a));
     }
 
     @Test
@@ -59,4 +57,20 @@ class TriangleWorkerTest {
            TriangleWorker.isTrianglePossible(a,b,c);
         });
     }
+
+    @Test
+    public void isTrianglePossibleTestSideInfinity() throws TriangleInvalidSideException {
+        double a = Double.POSITIVE_INFINITY;
+        double b = 4;
+        double c = 3;
+        assertFalse(TriangleWorker.isTrianglePossible(a,b,c));
+    }
+
+    @Test
+    public void isTrianglePossibleTestEquilateralInfinity() throws TriangleInvalidSideException {
+        double a = Double.POSITIVE_INFINITY;
+
+        assertFalse(TriangleWorker.isTrianglePossible(a,a,a));
+    }
+
 }
