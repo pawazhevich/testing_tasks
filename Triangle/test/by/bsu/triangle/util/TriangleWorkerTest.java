@@ -19,7 +19,7 @@ class TriangleWorkerTest {
     public void isTrianglePossibleTestSideMoreSum() throws TriangleInvalidSideException {
         double a = 7;
         double b = 8;
-        double c = a + b - 1;
+        double c = a + b + 1;
         assertFalse(TriangleWorker.isTrianglePossible(c,a,b));
     }
 
@@ -42,5 +42,12 @@ class TriangleWorkerTest {
         assertTrue(TriangleWorker.isTrianglePossible(a,b,c));
     }
 
+    @Test
+    public void isTrianglePossibleTestEquilateralTriangle() throws TriangleInvalidSideException {
+        double a = 1;
+        double b = 1;
+        double c = 1;
+        assertTrue(TriangleWorker.isTrianglePossible(a,b,c));
+    }
 
 }
