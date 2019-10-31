@@ -33,5 +33,14 @@ class TriangleWorkerTest {
         });
     }
 
+    @Test
+    public void isTrianglePossibleTestTooBigValues() throws TriangleInvalidSideException {
+        double max = Double.MAX_VALUE - 10;
+        double a = 3 + max;
+        double b = 5 + max;
+        double c = 4 + max;
+        assertTrue(TriangleWorker.isTrianglePossible(a,b,c));
+    }
 
+    
 }
