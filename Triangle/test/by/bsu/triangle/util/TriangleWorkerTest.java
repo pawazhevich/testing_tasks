@@ -16,7 +16,7 @@ class TriangleWorkerTest {
     }
 
     @Test
-    public void isTrianglePossibleTestSideLessSum() throws TriangleInvalidSideException {
+    public void isTrianglePossibleTestSideMoreSum() throws TriangleInvalidSideException {
         double a = 7;
         double b = 8;
         double c = a + b - 1;
@@ -42,5 +42,5 @@ class TriangleWorkerTest {
         assertTrue(TriangleWorker.isTrianglePossible(a,b,c));
     }
 
-    
+
 }
