@@ -9,6 +9,10 @@ public class TriangleWorker {
        if (a<=0 || b<=0 || c<=0) {
             throw new TriangleInvalidSideException("Triangle sides must be positive");
         }
+       // sum of two sides can give value that will bigger than double can store
+       a = a* 1.0/2;
+       b = b* 1.0/2;
+       c = c* 1.0/2;
 
        return (a < b + c) && (b < a + c) && (c < a + b);
    }
