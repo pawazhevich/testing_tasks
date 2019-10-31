@@ -73,4 +73,19 @@ class TriangleWorkerTest {
         assertFalse(TriangleWorker.isTrianglePossible(a,a,a));
     }
 
+    @Test
+    public void isTrianglePossibleTestRightTriangle() throws TriangleInvalidSideException {
+        double a = 5;
+        double c = 4;
+        double b = 3;
+        assertTrue(TriangleWorker.isTrianglePossible(a,b,c));
+    }
+
+    @Test
+    public void isTrianglePossibleTestIsoscelesTriangle() throws TriangleInvalidSideException {
+        double a = 5;
+        double b = 5;
+        double c = 3;
+        assertTrue(TriangleWorker.isTrianglePossible(a,b,c));
+    }
 }
