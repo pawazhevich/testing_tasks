@@ -10,6 +10,6 @@ public class TriangleWorker {
             throw new TriangleInvalidSideException("Triangle sides must be positive");
         }
 
-       return (a <= b + c) && (b <= a + c) && (c <= a + b);
+       return (a < b + c) && (b < a + c) && (c < a + b);
    }
 }
