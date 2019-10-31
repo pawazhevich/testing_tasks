@@ -23,7 +23,15 @@ class TriangleWorkerTest {
         assertFalse(TriangleWorker.isTrianglePossible(c,a,b));
     }
 
-    
+    @Test
+    public void isTrianglePossibleTestOneSideZero() {
+        double a = 0;
+        double b = 1;
+        double c = 3;
+        assertThrows(TriangleInvalidSideException.class, ()-> {
+           TriangleWorker.isTrianglePossible(a,b,c);
+        });
+    }
 
 
 }
