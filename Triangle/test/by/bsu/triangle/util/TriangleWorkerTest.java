@@ -50,4 +50,13 @@ class TriangleWorkerTest {
         assertTrue(TriangleWorker.isTrianglePossible(a,b,c));
     }
 
+    @Test
+    public void isTrianglePossibleTestNaN() throws TriangleInvalidSideException {
+        double a = 3;
+        double b = 5;
+        double c = Double.NaN;
+        assertThrows(TriangleInvalidSideException.class, ()->{
+           TriangleWorker.isTrianglePossible(a,b,c);
+        });
+    }
 }
