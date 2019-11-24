@@ -1,9 +1,9 @@
-package Planes;
+package entity;
 
 import java.util.Objects;
 
 abstract public class Plane {
-    String model;
+    private String model;
     private int maxSpeed;
     private int maxFlightDistance;
     private int maxLoadCapacity;
@@ -19,17 +19,16 @@ abstract public class Plane {
         return model;
     }
 
-    public int getMS() {
+    public int getMaxSpeed() {
         return maxSpeed;
     }
 
-    public int Get_Max_Flight_Distance() {
+    public int getMaxFlightDistance() {
         return maxFlightDistance;
     }
 
-    public int getMinLoadCapacity() {
-        int result = this.maxLoadCapacity;
-        return result;
+    public int getMaxLoadCapacity() {
+        return this.maxLoadCapacity;
     }
 
     @Override
@@ -45,16 +44,16 @@ abstract public class Plane {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Plane)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Plane plane = (Plane) o;
         return maxSpeed == plane.maxSpeed &&
                 maxFlightDistance == plane.maxFlightDistance &&
                 maxLoadCapacity == plane.maxLoadCapacity &&
-                Objects.equals(model, plane.model);
+                model.equals(plane.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
+        return Objects.hash(this.toString());
     }
 }
