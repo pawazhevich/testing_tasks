@@ -1,6 +1,6 @@
 package output;
 
-import airport.Airport;
+import entity.Airport;
 
 public class AirportPrinter {
     public static void printPlanesToConsole(Airport airport) {

@@ -1,4 +1,4 @@
-package airport;
+package entity;
 
 import entity.ExperimentalPlane;
 import entity.MilitaryPlaneType;
@@ -71,7 +71,7 @@ public class Airport {
 
     @Override
     public String toString() {
-        return "airport.Airport{" +
+        return "entity.Airport{" +
                 "Planes=" + planes.toString() +
                 '}';
     }

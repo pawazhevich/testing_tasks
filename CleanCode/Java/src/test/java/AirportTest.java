@@ -1,18 +1,14 @@
-import airport.Airport;
+import entity.Airport;
 import data.PlaneProvider;
-import entity.ExperimentalPlane;
 import entity.ClassificationPlaneLevel;
-import entity.ExperimentalPlaneType;
 import entity.MilitaryPlaneType;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import entity.MilitaryPlane;
 import entity.PassengerPlane;
 import entity.Plane;
 import util.AirportSorter;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package util;
 
-import airport.Airport;
+import entity.Airport;
 import entity.Plane;
 
 import java.util.Collections;

@@ -1,6 +1,6 @@
 package run;
 
-import airport.Airport;
+import entity.Airport;
 import data.PlaneProvider;
 import util.AirportSorter;
 
