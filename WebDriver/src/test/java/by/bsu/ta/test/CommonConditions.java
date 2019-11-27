@@ -8,6 +8,7 @@ import org.testng.annotations.Listeners;
 
 @Listeners
 public class CommonConditions {
+
     protected WebDriver driver;
 
     @BeforeMethod()
