@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RentSearchResultPage extends AbstractPage {
 
@@ -18,6 +20,7 @@ public class RentSearchResultPage extends AbstractPage {
 
     public RentSearchResultPage(WebDriver driver) {
         super(driver);
+        new WebDriverWait(driver, 60).until(ExpectedConditions.urlToBe(BASE_URL));
         PageFactory.initElements(this.driver, this);
     }
 
