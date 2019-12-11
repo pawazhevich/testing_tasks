@@ -35,6 +35,18 @@ public class MainPage extends AbstractPage {
     @FindBy(xpath = "/html/body/div[1]/div/div/div/div[2]/div[2]/div[5]/dl/dd[1]/div")
     private WebElement firstMatchingDropOffLocation;
 
+    @FindBy(id = "chk-age")
+    private WebElement checkBoxDriverAge;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div[2]/div/div[2]/div[2]/div[1]/form/div[3]/div[5]/label")
+    private WebElement labelCheckBoxDriverAge;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div/div[2]/div[2]/div[1]/form/div[3]/div[5]/input[2]")
+    private WebElement inputDriverAge;
+
+    @FindBy(xpath = "/html/body/div[1]/div/div[2]/div/div[2]/div[2]/div[1]/form/div[3]/div[5]/div[2]/article/div/header/h5")
+    private WebElement invalidAgeSelectionAlert;
+
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
@@ -50,7 +62,12 @@ public class MainPage extends AbstractPage {
     public RentSearchResultPage submitCarRentForm() {
         this.buttonFindYourCar.click();
         logger.info("Car rent form submit performed");
-        return new RentSearchResultPage(driver);
+        if(!driver.getCurrentUrl().equals(this.BASE_URL)) {
+            return new RentSearchResultPage(driver);
+        } else {
+            return null;
+        }
+
     }
 
     public void fillCarRentFrom(CarRentData rentData) {
@@ -75,6 +92,24 @@ public class MainPage extends AbstractPage {
             logger.warn("PickUp location alert element not found");
             return false;
         }
+    }
 
+    public void disableCheckBoxDriverAge() {
+        if(this.checkBoxDriverAge.isSelected()) {
+            this.labelCheckBoxDriverAge.click();
+        }
+    }
+
+    public void fillDriverAge(int age) {
+        this.inputDriverAge.sendKeys(age+"");
+    }
+
+    public boolean isInvalidAgeSelectionAlertDisplayed() {
+        try {
+            return invalidAgeSelectionAlert.isDisplayed();
+        } catch (NoSuchElementException exception) {
+            logger.warn("invalid age selection alert element not found");
+            return false;
+        }
     }
 }
