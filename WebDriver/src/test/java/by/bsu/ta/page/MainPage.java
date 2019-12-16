@@ -67,7 +67,6 @@ public class MainPage extends AbstractPage {
         } else {
             return null;
         }
-
     }
 
     public void fillCarRentFrom(CarRentData rentData) {
