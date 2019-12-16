@@ -12,10 +12,11 @@ public class CarRentTest extends CommonConditions {
     public void cantPickUpAndDropOffInDifferentContinents() {
         CarRentData testRentData = CarRentDataCreator.withLocationsFromDifferentContinents();
 
-        MainPage mainPage = new MainPage(driver).openPage();
-        mainPage.fillCarRentFrom(testRentData);
-
-        Assert.assertTrue(mainPage.submitCarRentForm()
-                .isSearchAgainMessageDisplayed());
+        Assert.assertTrue(
+                new MainPage(driver)
+                    .openPage()
+                    .fillCarRentFrom(testRentData)
+                    .submitCarRentForm()
+                    .isSearchAgainMessageDisplayed());
     }
 }

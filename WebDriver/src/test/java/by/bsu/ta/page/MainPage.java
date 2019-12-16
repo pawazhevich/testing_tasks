@@ -69,19 +69,20 @@ public class MainPage extends AbstractPage {
         }
     }
 
-    public void fillCarRentFrom(CarRentData rentData) {
-
+    public MainPage fillCarRentFrom(CarRentData rentData) {
         selectInputValueFromDropList(inputPickUpLocation, rentData.getPickUpLocation(), firstMatchingPickUpLocation);
         selectInputValueFromDropList(inputDropOffLocation, rentData.getDropOffLocation(), firstMatchingDropOffLocation);
+        return this;
     }
 
-    private void selectInputValueFromDropList(WebElement input, String subValue, WebElement matchingElement) {
+    private MainPage selectInputValueFromDropList(WebElement input, String subValue, WebElement matchingElement) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         ExpectedCondition<WebElement> waitCondition = ExpectedConditions.visibilityOf(matchingElement);
         input.sendKeys(subValue);
         wait.until(waitCondition);
         matchingElement.click();
         wait.until(ExpectedConditions.not(waitCondition));
+        return this;
     }
 
     public boolean isPickUpLocationAlertDisplayed() {
@@ -93,14 +94,16 @@ public class MainPage extends AbstractPage {
         }
     }
 
-    public void disableCheckBoxDriverAge() {
+    public MainPage disableCheckBoxDriverAge() {
         if(this.checkBoxDriverAge.isSelected()) {
             this.labelCheckBoxDriverAge.click();
         }
+        return this;
     }
 
-    public void fillDriverAge(int age) {
+    public MainPage fillDriverAge(int age) {
         this.inputDriverAge.sendKeys(age+"");
+        return this;
     }
 
     public boolean isInvalidAgeSelectionAlertDisplayed() {
