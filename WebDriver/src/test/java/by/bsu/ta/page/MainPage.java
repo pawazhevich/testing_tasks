@@ -63,6 +63,7 @@ public class MainPage extends AbstractPage {
         this.buttonFindYourCar.click();
         logger.info("Car rent form submit performed");
         if(!driver.getCurrentUrl().equals(this.BASE_URL)) {
+            logger.info("Redirecting to Rent Search Result Page");
             return new RentSearchResultPage(driver);
         } else {
             return null;
@@ -70,12 +71,14 @@ public class MainPage extends AbstractPage {
     }
 
     public MainPage fillCarRentFrom(CarRentData rentData) {
+        logger.info("Filling car rent form with rent data: " + rentData.toString());
         selectInputValueFromDropList(inputPickUpLocation, rentData.getPickUpLocation(), firstMatchingPickUpLocation);
         selectInputValueFromDropList(inputDropOffLocation, rentData.getDropOffLocation(), firstMatchingDropOffLocation);
         return this;
     }
 
     private MainPage selectInputValueFromDropList(WebElement input, String subValue, WebElement matchingElement) {
+        logger.info("Select input value from drop list");
         WebDriverWait wait = new WebDriverWait(driver, 30);
         ExpectedCondition<WebElement> waitCondition = ExpectedConditions.visibilityOf(matchingElement);
         input.sendKeys(subValue);

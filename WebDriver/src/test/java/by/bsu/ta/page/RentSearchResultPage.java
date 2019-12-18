@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RentSearchResultPage extends AbstractPage {
 
-    private final String BASE_URL = "https://www.autoeurope.com/results";
+    private final String BASE_URL = "https://www.autoeurope.com/results/";
     private final Logger logger = LogManager.getRootLogger();
 
     @FindBy(id = "search--again__msg")
@@ -20,7 +20,7 @@ public class RentSearchResultPage extends AbstractPage {
 
     public RentSearchResultPage(WebDriver driver) {
         super(driver);
-        new WebDriverWait(driver, 60).until(ExpectedConditions.urlToBe(BASE_URL));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.urlToBe(this.BASE_URL));
         PageFactory.initElements(this.driver, this);
     }
 
@@ -33,6 +33,7 @@ public class RentSearchResultPage extends AbstractPage {
 
     public boolean isSearchAgainMessageDisplayed() {
         try {
+            new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOf(messageSearchAgain));
             return messageSearchAgain.isDisplayed();
         } catch(NoSuchElementException exception) {
             logger.warn("SearchAgainMessage element not found");

@@ -11,7 +11,6 @@ public class CarRentTest extends CommonConditions {
     @Test
     public void cantPickUpAndDropOffInDifferentContinents() {
         CarRentData testRentData = CarRentDataCreator.withLocationsFromDifferentContinents();
-
         Assert.assertTrue(
                 new MainPage(driver)
                     .openPage()
