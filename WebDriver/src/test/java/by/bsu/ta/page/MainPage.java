@@ -1,6 +1,7 @@
 package by.bsu.ta.page;
 
 import by.bsu.ta.model.CarRentData;
+import by.bsu.ta.model.UserData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
@@ -47,6 +48,21 @@ public class MainPage extends AbstractPage {
     @FindBy(xpath = "/html/body/div[1]/div/div[2]/div/div[2]/div[2]/div[1]/form/div[3]/div[5]/div[2]/article/div/header/h5")
     private WebElement invalidAgeSelectionAlert;
 
+    @FindBy(xpath = "/html/body/div[1]/div/div/div/nav/div/ul[2]/li[2]/a")
+    private WebElement myAccountLoginButton;
+
+    @FindBy(id = "member_username")
+    private WebElement inputEmail;
+
+    @FindBy(id = "member_password")
+    private WebElement inputPassword;
+
+    @FindBy(id = "account_login_button")
+    private WebElement buttonAccountLogin;
+
+    @FindBy(id = "member-response-left")
+    private WebElement loginFailedAlert;
+
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
@@ -88,6 +104,16 @@ public class MainPage extends AbstractPage {
         return this;
     }
 
+    public MainPage loginUser(UserData userData) {
+        myAccountLoginButton.click();
+        inputEmail.sendKeys(userData.getEmail());
+        inputPassword.sendKeys(userData.getPassword());
+        logger.info("User data field " + userData.toString());
+        buttonAccountLogin.click();
+        logger.info("User login submitted ");
+        return this;
+    }
+
     public boolean isPickUpLocationAlertDisplayed() {
         try {
             return enterPickUpLocationAlert.isDisplayed();
@@ -100,12 +126,14 @@ public class MainPage extends AbstractPage {
     public MainPage disableCheckBoxDriverAge() {
         if(this.checkBoxDriverAge.isSelected()) {
             this.labelCheckBoxDriverAge.click();
+            logger.info("driver check box age disabled");
         }
         return this;
     }
 
     public MainPage fillDriverAge(int age) {
         this.inputDriverAge.sendKeys(age+"");
+        logger.info("driver age set " + age);
         return this;
     }
 
@@ -116,5 +144,10 @@ public class MainPage extends AbstractPage {
             logger.warn("invalid age selection alert element not found");
             return false;
         }
+    }
+
+    public String getLoginFailedAlertMessage() {
+        logger.info("Receiving login fail alert message");
+        return this.loginFailedAlert.getText();
     }
 }
