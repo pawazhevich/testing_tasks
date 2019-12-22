@@ -26,4 +26,5 @@ public class MainRentFormTest extends CommonConditions {
         mainPage.submitCarRentForm();
         Assert.assertTrue(mainPage.isInvalidAgeSelectionAlertDisplayed());
     }
+
 }

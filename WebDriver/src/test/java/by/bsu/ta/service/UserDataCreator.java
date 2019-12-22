@@ -12,11 +12,18 @@ public class UserDataCreator {
     public static UserData withInvalidEmail() {
         return new UserData(
                 TestDataReader.getTestData(TESTDATA_USER_INVALID_EMAIL),
-                TestDataReader.getTestData(TESTDATA_USER_PASSWORD)
+                TestDataReader.getTestData(TESTDATA_USER_INCORRECT_PASSWORD)
         );
     }
 
     public static UserData withIncorrectPassword() {
+        return new UserData(
+                TestDataReader.getTestData(TESTDATA_USER_EMAIL),
+                TestDataReader.getTestData(TESTDATA_USER_INCORRECT_PASSWORD)
+        );
+    }
+
+    public static UserData withCorrectLoginAndPassword() {
         return new UserData(
                 TestDataReader.getTestData(TESTDATA_USER_EMAIL),
                 TestDataReader.getTestData(TESTDATA_USER_PASSWORD)

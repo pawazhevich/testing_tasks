@@ -19,23 +19,23 @@ public class TestListener implements ITestListener {
     private Logger log = LogManager.getRootLogger();
 
     public void onTestStart(ITestResult iTestResult) {
-
+        log.info("Test started: " + iTestResult.getName());
     }
 
     public void onTestSuccess(ITestResult iTestResult) {
-
+        log.info("Test success: " + iTestResult.getName());
     }
 
     public void onTestFailure(ITestResult iTestResult) {
+        log.info("Test failed: " + iTestResult.getName());
         saveScreenshot();
     }
 
     public void onTestSkipped(ITestResult iTestResult) {
-
+        log.info("Test skipped" + iTestResult.getName());
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
     }
 
     public void onStart(ITestContext iTestContext) {

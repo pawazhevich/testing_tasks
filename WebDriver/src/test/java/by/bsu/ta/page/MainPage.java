@@ -4,6 +4,7 @@ import by.bsu.ta.model.CarRentData;
 import by.bsu.ta.model.UserData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainPage extends AbstractPage {
 
@@ -63,6 +66,9 @@ public class MainPage extends AbstractPage {
     @FindBy(id = "member-response-left")
     private WebElement loginFailedAlert;
 
+    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div/div/div[2]/button")
+    private WebElement buttonCookieAccept;
+
     public MainPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
@@ -72,6 +78,8 @@ public class MainPage extends AbstractPage {
     public MainPage openPage() {
         driver.navigate().to(BASE_URL);
         logger.info("Main page opened");
+        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOf(buttonCookieAccept));
+        buttonCookieAccept.click();
         return this;
     }
 
@@ -96,11 +104,12 @@ public class MainPage extends AbstractPage {
     private MainPage selectInputValueFromDropList(WebElement input, String subValue, WebElement matchingElement) {
         logger.info("Select input value from drop list");
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        ExpectedCondition<WebElement> waitCondition = ExpectedConditions.visibilityOf(matchingElement);
+        ExpectedCondition<WebElement> visibilityCondition = ExpectedConditions.visibilityOf(matchingElement);
         input.sendKeys(subValue);
-        wait.until(waitCondition);
+        wait.until(visibilityCondition);
+        wait.until(ExpectedConditions.elementToBeClickable(matchingElement));
         matchingElement.click();
-        wait.until(ExpectedConditions.not(waitCondition));
+        wait.until(ExpectedConditions.not(visibilityCondition));
         return this;
     }
 
@@ -115,6 +124,8 @@ public class MainPage extends AbstractPage {
     }
 
     public boolean isPickUpLocationAlertDisplayed() {
+        new WebDriverWait(driver, 30)
+                .until(ExpectedConditions.visibilityOf(enterPickUpLocationAlert));
         try {
             return enterPickUpLocationAlert.isDisplayed();
         } catch (NoSuchElementException exception) {
@@ -148,6 +159,24 @@ public class MainPage extends AbstractPage {
 
     public String getLoginFailedAlertMessage() {
         logger.info("Receiving login fail alert message");
+        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOf(this.loginFailedAlert));
         return this.loginFailedAlert.getText();
+    }
+
+    public void switchLanguage() {
+        logger.info("Changing language");
+        WebElement languageSwitch = driver
+                .findElement(By.xpath("/html/body/div[1]/div/div/div/header/div[1]/div[1]/div/li/span"));
+        languageSwitch.click();
+        driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[1]/div[3]/div[1]/dl[1]/dd/dl/a[1]/dd"))
+                .click();
+    }
+
+    public String getBaseUrl() {
+        return BASE_URL;
+    }
+
+    public boolean isUserLoggedIn() {
+        return driver.findElement(By.xpath("/html/body/div[1]/div/div/div/nav/div/ul[2]")).isDisplayed();
     }
 }
