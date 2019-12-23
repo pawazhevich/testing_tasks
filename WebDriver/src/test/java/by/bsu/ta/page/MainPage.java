@@ -104,7 +104,8 @@ public class MainPage extends AbstractPage {
         input.sendKeys(subValue);
         wait.until(ExpectedConditions.elementToBeClickable(matchingElement));
         matchingElement.click();
-        wait.until(ExpectedConditions.not(visibilityCondition));
+        wait.until(ExpectedConditions.not(ExpectedConditions
+                .not(ExpectedConditions.elementToBeClickable(matchingElement))));
         return this;
     }
 
