@@ -27,4 +27,12 @@ public class MainRentFormTest extends CommonConditions {
         Assert.assertTrue(mainPage.isInvalidAgeSelectionAlertDisplayed());
     }
 
+    @Test
+    public void backToTopButtonScrollsToTop() {
+        MainPage mainPage = new MainPage(driver).openPage();
+        Assert.assertEquals(
+        ((MainPage)mainPage.scrollDown())
+                .clickBackToTopButton()
+                .getScrollPosition(), 0);
+    }
 }

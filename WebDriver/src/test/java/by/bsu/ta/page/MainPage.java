@@ -4,10 +4,7 @@ import by.bsu.ta.model.CarRentData;
 import by.bsu.ta.model.UserData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -104,9 +101,7 @@ public class MainPage extends AbstractPage {
     private MainPage selectInputValueFromDropList(WebElement input, String subValue, WebElement matchingElement) {
         logger.info("Select input value from drop list");
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        ExpectedCondition<WebElement> visibilityCondition = ExpectedConditions.visibilityOf(matchingElement);
         input.sendKeys(subValue);
-        wait.until(visibilityCondition);
         wait.until(ExpectedConditions.elementToBeClickable(matchingElement));
         matchingElement.click();
         wait.until(ExpectedConditions.not(visibilityCondition));
@@ -179,4 +174,16 @@ public class MainPage extends AbstractPage {
     public boolean isUserLoggedIn() {
         return driver.findElement(By.xpath("/html/body/div[1]/div/div/div/nav/div/ul[2]")).isDisplayed();
     }
+
+    public MainPage clickBackToTopButton() {
+        WebElement buttonBackToTop = driver.findElement(By.id("back2top"));
+        logger.info("Performing back to top button click");
+        try {
+            buttonBackToTop.click();
+        } catch (ElementClickInterceptedException e) {
+            logger.info("Back to top button is intercepted");
+        }
+        return this;
+    }
+
 }
