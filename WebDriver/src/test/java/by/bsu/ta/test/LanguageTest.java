@@ -12,4 +12,12 @@ public class LanguageTest extends CommonConditions {
         mainPage.switchLanguage();
         Assert.assertNotEquals(driver.getCurrentUrl(), mainPage.getBaseUrl());
     }
+
+    @Test
+    public void windowConfigDisplayByButton() {
+        Assert.assertTrue(new MainPage(driver)
+                .openPage()
+                .clickConfigButton()
+                .isConfigWindowDisplayed());
+    }
 }

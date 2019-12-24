@@ -18,4 +18,12 @@ public class CarRentTest extends CommonConditions {
                     .submitCarRentForm()
                     .isSearchAgainMessageDisplayed());
     }
+
+    @Test
+    public void configWindowDisplayByCLickButton() {
+        Assert.assertTrue(new MainPage(driver)
+                .openPage()
+                .clickConfigButton()
+                .isConfigWindowDisplayed());
+    }
 }

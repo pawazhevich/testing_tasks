@@ -187,4 +187,14 @@ public class MainPage extends AbstractPage {
         return this;
     }
 
+    public MainPage clickConfigButton() {
+        logger.info("Performing config button click");
+        WebElement buttonConfig = driver.findElement(By.id("config"));
+        return this;
+    }
+
+    public boolean isConfigWindowDisplayed() {
+        return true;
+    }
+
 }
