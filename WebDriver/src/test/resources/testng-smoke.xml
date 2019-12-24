@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke" verbose="1" >
+    <test name="UserAccess"   >
+        <classes>
+            <class name="by.bsu.ta.test.UserAccessTests" />
+        </classes>
+    </test>
+</suite>
+© 2019 GitHub, Inc.
