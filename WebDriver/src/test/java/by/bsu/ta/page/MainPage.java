@@ -189,7 +189,7 @@ public class MainPage extends AbstractPage {
 
     public MainPage clickConfigButton() {
         logger.info("Performing config button click");
-        WebElement buttonConfig = driver.findElement(By.id("config"));
+        WebElement buttonConfig = driver.findElement(By.id("site-container"));
         return this;
     }
 
